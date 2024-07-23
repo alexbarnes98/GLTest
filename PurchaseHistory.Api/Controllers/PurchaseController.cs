@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PurchaseHistory.Api.DTOs;
+using PurchaseHistory.Core.Entities;
 using PurchaseHistory.Core.Interfaces;
 
 namespace PurchaseHistory.Api.Controllers;
@@ -22,7 +23,6 @@ public class PurchaseController : ControllerBase
     }
 
     [HttpGet("~/purchase/GetAllPurchases")]
-    [IgnoreAntiforgeryToken]
     [Produces("application/json")]
     public ActionResult<IEnumerable<PurchaseDto>> GetAllPurchases()
     {
@@ -35,5 +35,30 @@ public class PurchaseController : ControllerBase
         }).ToList();
 
         return Ok(purchases);
+    }
+
+    [HttpGet("~/purchase/GetPurchaseById")]
+    [Produces("application/json")]
+    public ActionResult<IEnumerable<PurchaseDto>> GetPurchaseById(long id)
+    {
+
+        Purchase purchase = _purchaseService.GetPurchase(id);
+
+        if (purchase == null)
+        {
+            return NotFound();
+        }
+
+        PurchaseDetailDto purchaseDetail = new PurchaseDetailDto
+        {
+            Name = purchase.Name,
+            PurchasedAt = purchase.PurchasedAt,
+            Cost = purchase.Quantity * purchase.UnitPrice,
+            Quantity = purchase.Quantity,
+            UnitPrice = purchase.UnitPrice,
+            Description = purchase.Description
+        };
+
+        return Ok(purchaseDetail);
     }
 }

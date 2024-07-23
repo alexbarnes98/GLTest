@@ -1,0 +1,39 @@
+// src/app/components/purchase-list/purchase-list.component.scss
+
+div {
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+
+    thead {
+      background-color: #007bff;
+      color: white;
+
+      th {
+        padding: 0.75rem;
+        text-align: left;
+        border-bottom: 2px solid #0056b3;
+      }
+    }
+
+    tbody {
+      tr {
+        &:hover {
+          background-color: #f1f1f1;
+          cursor: pointer;
+        }
+
+        td {
+          padding: 0.75rem;
+          border-bottom: 1px solid #ddd;
+        }
+      }
+    }
+  }
+}

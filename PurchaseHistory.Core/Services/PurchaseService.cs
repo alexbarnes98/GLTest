@@ -20,5 +20,9 @@ namespace PurchaseHistory.Core.Services
         {
             return _purchaseRepository.GetPurchases();
         }
+        public Purchase GetPurchase(long id)
+        {
+            return _purchaseRepository.GetPurchase(id);
+        }
     }
 }

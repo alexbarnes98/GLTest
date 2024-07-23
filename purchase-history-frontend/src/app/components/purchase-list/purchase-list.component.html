@@ -1,1 +1,21 @@
-<p>purchase-list works!</p>
+<!-- src/app/components/purchase-list/purchase-list.component.html -->
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Purchased At</th>
+        <th>Total Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let purchase of purchases" (click)="selectPurchase(purchase)">
+        <td>{{ purchase.id }}</td>
+        <td>{{ purchase.name }}</td>
+        <td>{{ purchase.purchasedAt }}</td>
+        <td>{{ purchase.totalCost }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
