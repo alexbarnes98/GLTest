@@ -1,92 +1,90 @@
-﻿using Microsoft.Extensions.Logging;
-using PurchaseHistory.Core.Entities;
+﻿using PurchaseHistory.Core.Entities;
 using PurchaseHistory.Core.Interfaces;
 
-namespace PurchaseHistory.Core.Services
+namespace PurchaseHistory.Core.Services;
+
+public class PurchaseService : IPurchaseService
 {
-    public class PurchaseService : IPurchaseService
+    private readonly ILogger<PurchaseService> _logger;
+    private readonly IPurchaseRepository _purchaseRepository;
+
+    public PurchaseService(IPurchaseRepository purchaseRepository, ILogger<PurchaseService> logger)
     {
-        private readonly IPurchaseRepository _purchaseRepository;
-        private readonly ILogger<PurchaseService> _logger;
+        _purchaseRepository = purchaseRepository;
+        _logger = logger;
+    }
 
-        public PurchaseService(IPurchaseRepository purchaseRepository, ILogger<PurchaseService> logger)
+    public IEnumerable<Purchase> GetPurchases()
+    {
+        try
         {
-            _purchaseRepository = purchaseRepository;
-            _logger = logger;
+            _logger.LogInformation("Fetching all purchases from repository");
+            return _purchaseRepository.GetPurchases();
         }
-
-        public IEnumerable<Purchase> GetPurchases()
+        catch (Exception ex)
         {
-            try
-            {
-                _logger.LogInformation("Fetching all purchases from repository");
-                return _purchaseRepository.GetPurchases();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while fetching purchases");
-                throw;
-            }
+            _logger.LogError(ex, "An error occurred while fetching purchases");
+            throw;
         }
+    }
 
-        public Purchase GetPurchase(long id)
+    public Purchase GetPurchase(long id)
+    {
+        try
         {
-            try
-            {
-                _logger.LogInformation("Fetching purchase with id: {Id} from repository", id);
-                return _purchaseRepository.GetPurchase(id);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while fetching purchase with id: {Id}", id);
-                throw;
-            }
+            _logger.LogInformation("Fetching purchase with id: {Id} from repository", id);
+            return _purchaseRepository.GetPurchase(id);
         }
-
-        public SummaryStatistics GetSummaryStatistics()
+        catch (Exception ex)
         {
-            try
+            _logger.LogError(ex, "An error occurred while fetching purchase with id: {Id}", id);
+            throw;
+        }
+    }
+
+    public SummaryStatistics GetSummaryStatistics()
+    {
+        try
+        {
+            _logger.LogInformation("Calculating summary statistics");
+
+            IEnumerable<Purchase> purchases = _purchaseRepository.GetPurchases();
+
+            Dictionary<string, decimal> spendPerMonth = purchases
+                .GroupBy(p => p.PurchasedAt.ToString("yyyy-MM"))
+                .ToDictionary(g => g.Key, g => g.Sum(p => p.Quantity * p.UnitPrice));
+
+            string mostExpensiveMonth = spendPerMonth
+                .OrderByDescending(s => s.Value)
+                .First().Key;
+
+            string monthWithMostUnitsBought = purchases
+                .GroupBy(p => p.PurchasedAt.ToString("yyyy-MM"))
+                .OrderByDescending(g => g.Sum(p => p.Quantity))
+                .First().Key;
+
+            string mostExpensivePurchaseProductName = purchases
+                .OrderByDescending(p => p.Quantity * p.UnitPrice)
+                .First().Name;
+
+            string productNameWithMostUnitsBought = purchases
+                .GroupBy(p => p.Name)
+                .OrderByDescending(g => g.Sum(p => p.Quantity))
+                .First().Key;
+
+            return new SummaryStatistics
             {
-                _logger.LogInformation("Calculating summary statistics");
-
-                IEnumerable<Purchase> purchases = _purchaseRepository.GetPurchases();
-
-                Dictionary<string, decimal> spendPerMonth = purchases
-                    .GroupBy(p => p.PurchasedAt.ToString("yyyy-MM"))
-                    .ToDictionary(g => g.Key, g => g.Sum(p => p.Quantity * p.UnitPrice));
-
-                string mostExpensiveMonth = spendPerMonth
-                    .OrderByDescending(s => s.Value)
-                    .First().Key;
-
-                string monthWithMostUnitsBought = purchases
-                    .GroupBy(p => p.PurchasedAt.ToString("yyyy-MM"))
-                    .OrderByDescending(g => g.Sum(p => p.Quantity))
-                    .First().Key;
-
-                string mostExpensivePurchaseProductName = purchases
-                    .OrderByDescending(p => p.Quantity * p.UnitPrice)
-                    .First().Name;
-
-                string productNameWithMostUnitsBought = purchases
-                    .GroupBy(p => p.Name)
-                    .OrderByDescending(g => g.Sum(p => p.Quantity))
-                    .First().Key;
-
-                return new SummaryStatistics
-                {
-                    SpendPerMonth = spendPerMonth,
-                    MostExpensiveMonth = mostExpensiveMonth,
-                    MonthWithMostUnitsBought = monthWithMostUnitsBought,
-                    MostExpensivePurchaseProductName = mostExpensivePurchaseProductName,
-                    ProductNameWithMostUnitsBought = productNameWithMostUnitsBought
-                };
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while calculating summary statistics");
-                throw;
-            }
+                SpendPerMonth = spendPerMonth,
+                MostExpensiveMonth = mostExpensiveMonth,
+                MonthWithMostUnitsBought = monthWithMostUnitsBought,
+                MostExpensivePurchaseProductName = mostExpensivePurchaseProductName,
+                ProductNameWithMostUnitsBought = productNameWithMostUnitsBought
+            };
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred while calculating summary statistics");
+            throw;
         }
     }
 }

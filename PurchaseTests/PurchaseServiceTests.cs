@@ -1,12 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Moq;
-using PurchaseHistory.Core.Entities;
-using PurchaseHistory.Core.Interfaces;
-using PurchaseHistory.Core.Services;
-using Xunit;
-using Assert = Xunit.Assert;
-
-namespace PurchaseHistory.Tests.Services;
+﻿namespace PurchaseHistory.Tests.Services;
 
 public class PurchaseServiceTests
 {

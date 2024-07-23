@@ -3,102 +3,101 @@ using PurchaseHistory.Api.DTOs;
 using PurchaseHistory.Core.Entities;
 using PurchaseHistory.Core.Interfaces;
 
-namespace PurchaseHistory.Api.Controllers
+namespace PurchaseHistory.Api.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class PurchaseController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class PurchaseController : ControllerBase
+    private readonly ILogger<PurchaseController> _logger;
+    private readonly IPurchaseService _purchaseService;
+
+    public PurchaseController(IPurchaseService purchaseService, ILogger<PurchaseController> logger)
     {
-        private readonly IPurchaseService _purchaseService;
-        private readonly ILogger<PurchaseController> _logger;
+        _purchaseService = purchaseService;
+        _logger = logger;
+    }
 
-        public PurchaseController(IPurchaseService purchaseService, ILogger<PurchaseController> logger)
+    [HttpGet("test")]
+    [IgnoreAntiforgeryToken]
+    [Produces("application/json")]
+    public async Task<IActionResult> Test()
+    {
+        return Ok("Good!");
+    }
+
+    [HttpGet("GetAllPurchases")]
+    [Produces("application/json")]
+    public ActionResult<IEnumerable<PurchaseDto>> GetAllPurchases()
+    {
+        try
         {
-            _purchaseService = purchaseService;
-            _logger = logger;
+            _logger.LogInformation("Getting all purchases");
+            List<PurchaseDto> purchases = _purchaseService.GetPurchases().Select(p => new PurchaseDto
+            {
+                Id = p.Id,
+                Name = p.Name,
+                PurchasedAt = p.PurchasedAt,
+                TotalCost = p.Quantity * p.UnitPrice
+            }).ToList();
+
+            return Ok(purchases);
         }
-
-        [HttpGet("test")]
-        [IgnoreAntiforgeryToken]
-        [Produces("application/json")]
-        public async Task<IActionResult> Test()
+        catch (Exception ex)
         {
-            return Ok("Good!");
+            _logger.LogError(ex, "An error occurred while getting all purchases");
+            return StatusCode(500, "Internal server error");
         }
+    }
 
-        [HttpGet("GetAllPurchases")]
-        [Produces("application/json")]
-        public ActionResult<IEnumerable<PurchaseDto>> GetAllPurchases()
+    [HttpGet("GetPurchaseById")]
+    [Produces("application/json")]
+    public ActionResult<PurchaseDetailDto> GetPurchaseById(long id)
+    {
+        try
         {
-            try
-            {
-                _logger.LogInformation("Getting all purchases");
-                List<PurchaseDto> purchases = _purchaseService.GetPurchases().Select(p => new PurchaseDto
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    PurchasedAt = p.PurchasedAt,
-                    TotalCost = p.Quantity * p.UnitPrice
-                }).ToList();
+            _logger.LogInformation("Getting purchase by id: {Id}", id);
+            Purchase purchase = _purchaseService.GetPurchase(id);
 
-                return Ok(purchases);
-            }
-            catch (Exception ex)
+            if (purchase == null)
             {
-                _logger.LogError(ex, "An error occurred while getting all purchases");
-                return StatusCode(500, "Internal server error");
+                _logger.LogWarning("Purchase with id: {Id} not found", id);
+                return NotFound();
             }
+
+            PurchaseDetailDto purchaseDetail = new()
+            {
+                Name = purchase.Name,
+                PurchasedAt = purchase.PurchasedAt,
+                Cost = purchase.Quantity * purchase.UnitPrice,
+                Quantity = purchase.Quantity,
+                UnitPrice = purchase.UnitPrice,
+                Description = purchase.Description
+            };
+
+            return Ok(purchaseDetail);
         }
-
-        [HttpGet("GetPurchaseById")]
-        [Produces("application/json")]
-        public ActionResult<PurchaseDetailDto> GetPurchaseById(long id)
+        catch (Exception ex)
         {
-            try
-            {
-                _logger.LogInformation("Getting purchase by id: {Id}", id);
-                Purchase purchase = _purchaseService.GetPurchase(id);
-
-                if (purchase == null)
-                {
-                    _logger.LogWarning("Purchase with id: {Id} not found", id);
-                    return NotFound();
-                }
-
-                PurchaseDetailDto purchaseDetail = new()
-                {
-                    Name = purchase.Name,
-                    PurchasedAt = purchase.PurchasedAt,
-                    Cost = purchase.Quantity * purchase.UnitPrice,
-                    Quantity = purchase.Quantity,
-                    UnitPrice = purchase.UnitPrice,
-                    Description = purchase.Description
-                };
-
-                return Ok(purchaseDetail);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while getting purchase by id: {Id}", id);
-                return StatusCode(500, "Internal server error");
-            }
+            _logger.LogError(ex, "An error occurred while getting purchase by id: {Id}", id);
+            return StatusCode(500, "Internal server error");
         }
+    }
 
-        [HttpGet("summary")]
-        [Produces("application/json")]
-        public ActionResult<SummaryStatisticsDto> GetSummaryStatistics()
+    [HttpGet("summary")]
+    [Produces("application/json")]
+    public ActionResult<SummaryStatisticsDto> GetSummaryStatistics()
+    {
+        try
         {
-            try
-            {
-                _logger.LogInformation("Getting summary statistics");
-                SummaryStatistics statistics = _purchaseService.GetSummaryStatistics();
-                return Ok(statistics);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while getting summary statistics");
-                return StatusCode(500, "Internal server error");
-            }
+            _logger.LogInformation("Getting summary statistics");
+            SummaryStatistics statistics = _purchaseService.GetSummaryStatistics();
+            return Ok(statistics);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred while getting summary statistics");
+            return StatusCode(500, "Internal server error");
         }
     }
 }

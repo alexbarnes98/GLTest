@@ -1,12 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Moq;
 using PurchaseHistory.Api.Controllers;
 using PurchaseHistory.Api.DTOs;
-using PurchaseHistory.Core.Entities;
-using PurchaseHistory.Core.Interfaces;
-using Xunit;
-using Assert = Xunit.Assert;
 
 namespace PurchaseHistory.Tests.Controllers;
 
