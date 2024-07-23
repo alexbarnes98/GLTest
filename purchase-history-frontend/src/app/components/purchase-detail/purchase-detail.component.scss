@@ -1,0 +1,25 @@
+// src/app/components/purchase-detail/purchase-detail.component.scss
+
+div {
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    margin-top: 0;
+    color: #007bff;
+  }
+
+  p {
+    margin: 0.5rem 0;
+
+    strong {
+      font-weight: bold;
+    }
+  }
+}

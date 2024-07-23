@@ -1,1 +1,11 @@
-<p>purchase-detail works!</p>
+<!-- src/app/components/purchase-detail/purchase-detail.component.html -->
+<div>
+  <h2>{{ purchase.name }}</h2>
+  <p><strong>Purchased At:</strong> {{ purchase.purchasedAt | date }}</p>
+  <p><strong>Cost:</strong> {{ purchase.cost | currency : "GBP" }}</p>
+  <p><strong>Quantity:</strong> {{ purchase.quantity }}</p>
+  <p>
+    <strong>Unit Price:</strong> {{ purchase.unitPrice | currency : "GBP" }}
+  </p>
+  <p><strong>Description:</strong> {{ purchase.description }}</p>
+</div>

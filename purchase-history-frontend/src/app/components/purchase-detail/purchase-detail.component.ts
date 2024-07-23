@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { PurchaseDetail } from "../../models/purchase-detail";
 
 @Component({
-  selector: 'app-purchase-detail',
+  selector: "app-purchase-detail",
   standalone: true,
-  imports: [],
-  templateUrl: './purchase-detail.component.html',
-  styleUrl: './purchase-detail.component.scss'
+  imports: [CommonModule, PurchaseDetailComponent],
+  templateUrl: "./purchase-detail.component.html",
+  styleUrls: ["./purchase-detail.component.scss"],
 })
 export class PurchaseDetailComponent {
-
+  @Input() public purchase!: PurchaseDetail;
 }

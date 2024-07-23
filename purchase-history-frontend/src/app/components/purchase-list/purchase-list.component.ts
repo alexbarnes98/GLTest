@@ -4,6 +4,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { PurchaseService } from "../../services/purchase.service";
 import { Purchase } from "../../models/purchase";
 import { PurchaseDetailComponent } from "../purchase-detail/purchase-detail.component";
+import { PurchaseDetail } from "../../models/purchase-detail";
 
 @Component({
   selector: "app-purchase-list",
@@ -14,7 +15,7 @@ import { PurchaseDetailComponent } from "../purchase-detail/purchase-detail.comp
 })
 export class PurchaseListComponent implements OnInit {
   purchases: Purchase[] = [];
-  selectedPurchase: Purchase | null = null;
+  selectedPurchase: PurchaseDetail | null = null;
 
   constructor(private purchaseService: PurchaseService) {}
 
@@ -25,7 +26,9 @@ export class PurchaseListComponent implements OnInit {
   }
 
   selectPurchase(purchase: Purchase): void {
-    this.selectedPurchase = purchase;
-    console.log(this.selectedPurchase);
+    this.purchaseService.getPurchaseById(purchase.id).subscribe((data) => {
+      this.selectedPurchase = data;
+      console.log(this.selectedPurchase);
+    });
   }
 }
