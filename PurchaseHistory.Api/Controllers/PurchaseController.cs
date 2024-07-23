@@ -41,7 +41,6 @@ public class PurchaseController : ControllerBase
     [Produces("application/json")]
     public ActionResult<IEnumerable<PurchaseDto>> GetPurchaseById(long id)
     {
-
         Purchase purchase = _purchaseService.GetPurchase(id);
 
         if (purchase == null)
@@ -49,7 +48,7 @@ public class PurchaseController : ControllerBase
             return NotFound();
         }
 
-        PurchaseDetailDto purchaseDetail = new PurchaseDetailDto
+        PurchaseDetailDto purchaseDetail = new()
         {
             Name = purchase.Name,
             PurchasedAt = purchase.PurchasedAt,
@@ -60,5 +59,12 @@ public class PurchaseController : ControllerBase
         };
 
         return Ok(purchaseDetail);
+    }
+
+    [HttpGet("~/purchase/summary")]
+    public ActionResult<SummaryStatisticsDto> GetSummaryStatistics()
+    {
+        SummaryStatistics statistics = _purchaseService.GetSummaryStatistics();
+        return Ok(statistics);
     }
 }

@@ -1,9 +1,3 @@
-Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\obj\Debug\net8.0\PurchaseHistory.Api.GeneratedMSBuildEditorConfig.editorconfig
-Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\obj\Debug\net8.0\PurchaseHistory.Api.AssemblyInfoInputs.cache
-Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\obj\Debug\net8.0\PurchaseHistory.Api.AssemblyInfo.cs
-Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\obj\Debug\net8.0\PurchaseHistory.Api.csproj.CoreCompileInputs.cache
-Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\obj\Debug\net8.0\PurchaseHistory.Api.MvcApplicationPartsAssemblyInfo.cache
-Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\obj\Debug\net8.0\PurchaseHistory.Api.sourcelink.json
 Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\bin\Debug\net8.0\appsettings.Development.json
 Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\bin\Debug\net8.0\appsettings.json
 Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\bin\Debug\net8.0\PurchaseHistory.Api.exe
@@ -14,6 +8,12 @@ Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\bin\Debug\net8.0\PurchaseHisto
 Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\bin\Debug\net8.0\PurchaseHistory.Core.dll
 Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\bin\Debug\net8.0\PurchaseHistory.Core.pdb
 Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\obj\Debug\net8.0\PurchaseHistory.Api.csproj.AssemblyReference.cache
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\obj\Debug\net8.0\PurchaseHistory.Api.GeneratedMSBuildEditorConfig.editorconfig
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\obj\Debug\net8.0\PurchaseHistory.Api.AssemblyInfoInputs.cache
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\obj\Debug\net8.0\PurchaseHistory.Api.AssemblyInfo.cs
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\obj\Debug\net8.0\PurchaseHistory.Api.csproj.CoreCompileInputs.cache
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\obj\Debug\net8.0\PurchaseHistory.Api.MvcApplicationPartsAssemblyInfo.cache
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\obj\Debug\net8.0\PurchaseHistory.Api.sourcelink.json
 Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\obj\Debug\net8.0\staticwebassets.build.json
 Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\obj\Debug\net8.0\staticwebassets.development.json
 Z:\source\alexbarnes98\GLTest\PurchaseHistory.Api\obj\Debug\net8.0\staticwebassets\msbuild.PurchaseHistory.Api.Microsoft.AspNetCore.StaticWebAssets.props

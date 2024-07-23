@@ -1,0 +1,31 @@
+// src/app/components/navbar/navbar.component.scss
+
+nav {
+  background-color: #002c5c;
+  padding: 1rem;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+
+    li {
+      margin-right: 1rem;
+
+      a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        background-color: #0056b3;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #004494;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
