@@ -9,7 +9,7 @@ import { SummaryStatistics } from "../models/summary-statistics";
   providedIn: "root",
 })
 export class PurchaseService {
-  private apiUrl = "https://localhost:7122/purchase";
+  private apiUrl = "https://localhost:7122/api/purchase";
 
   constructor(private http: HttpClient) {}
 

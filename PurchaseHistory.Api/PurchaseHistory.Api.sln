@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35017.193
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurchaseHistory.Api", "PurchaseHistory.Api.csproj", "{901943E4-4BA0-47D0-A03C-C5A7223EA607}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PurchaseHistory.Api", "PurchaseHistory.Api.csproj", "{901943E4-4BA0-47D0-A03C-C5A7223EA607}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurchaseHistory.Core", "..\PurchaseHistory.Core\PurchaseHistory.Core.csproj", "{0F5092E0-E011-464A-9AD5-3FA35FABBBE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PurchaseHistory.Core", "..\PurchaseHistory.Core\PurchaseHistory.Core.csproj", "{0F5092E0-E011-464A-9AD5-3FA35FABBBE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurchaseTests", "..\PurchaseTests\PurchaseTests.csproj", "{A1011DDA-3737-473F-A96C-8728F11652C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0F5092E0-E011-464A-9AD5-3FA35FABBBE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F5092E0-E011-464A-9AD5-3FA35FABBBE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F5092E0-E011-464A-9AD5-3FA35FABBBE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1011DDA-3737-473F-A96C-8728F11652C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1011DDA-3737-473F-A96C-8728F11652C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1011DDA-3737-473F-A96C-8728F11652C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1011DDA-3737-473F-A96C-8728F11652C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
