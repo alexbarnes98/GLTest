@@ -1,0 +1,12 @@
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Core\bin\Debug\net8.0\PurchaseHistory.Core.deps.json
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Core\bin\Debug\net8.0\PurchaseHistory.Core.dll
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Core\bin\Debug\net8.0\PurchaseHistory.Core.pdb
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Core\obj\Debug\net8.0\PurchaseHistory.Core.GeneratedMSBuildEditorConfig.editorconfig
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Core\obj\Debug\net8.0\PurchaseHistory.Core.AssemblyInfoInputs.cache
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Core\obj\Debug\net8.0\PurchaseHistory.Core.AssemblyInfo.cs
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Core\obj\Debug\net8.0\PurchaseHistory.Core.csproj.CoreCompileInputs.cache
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Core\obj\Debug\net8.0\PurchaseHistory.Core.sourcelink.json
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Core\obj\Debug\net8.0\PurchaseHistory.Core.dll
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Core\obj\Debug\net8.0\refint\PurchaseHistory.Core.dll
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Core\obj\Debug\net8.0\PurchaseHistory.Core.pdb
+Z:\source\alexbarnes98\GLTest\PurchaseHistory.Core\obj\Debug\net8.0\ref\PurchaseHistory.Core.dll
